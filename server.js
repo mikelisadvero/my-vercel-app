@@ -31,7 +31,7 @@ app.post('/scrape', async (req, res) => {
 });
 
 async function runApifyActor(type, keyword, numResults, sites) {
-    const actorId = type === 'google' ? '52YojklHNAIElW3t8' : 'ptLGAfpjlMEmQildy';
+    const actorId = type === 'google' ? 'lzjHrkj6h55oGvZvv' : 'ptLGAfpjlMEmQildy';
     const apiUrl = `https://api.apify.com/v2/actor-tasks/${actorId}/run-sync-get-dataset-items`;
     let searchQuery = keyword;
 
