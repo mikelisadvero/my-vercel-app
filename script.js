@@ -1,18 +1,18 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     const toggle = document.getElementById('scraperToggle');
-    const toggleLabel = document.getElementById('toggleLabel');
+    const container = document.querySelector('.container');
     const googleScraper = document.getElementById('googleScraper');
     const youtubeScraper = document.getElementById('youtubeScraper');
-    
-    toggle.addEventListener('change', () => {
-        if (toggle.checked) {
+
+    toggle.addEventListener('change', function() {
+        if (this.checked) {
             googleScraper.style.display = 'none';
             youtubeScraper.style.display = 'block';
-            toggleLabel.textContent = 'YouTube Scraper';
+            container.className = 'container youtube-bg';
         } else {
             googleScraper.style.display = 'block';
             youtubeScraper.style.display = 'none';
-            toggleLabel.textContent = 'Google Scraper';
+            container.className = 'container google-bg';
         }
     });
 });

@@ -4,13 +4,16 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #fafafa;
+    margin: 0;
+    padding: 20px;
 }
 
 .container {
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    width: 100%;
-    max-width: 600px;
+    max-width: 400px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
 }
 
 .input-field label {
@@ -18,25 +21,43 @@ body {
 }
 
 .input-field input[type=text]:focus + label,
-.input-field input[type=number]:focus + label {
+.input-field input[type=number]:focus + label,
+.input-field textarea:focus + label {
     color: #26a69a;
 }
 
-.input-field input[type=text]:focus,
-.input-field input[type=number]:focus {
-    border-bottom: 1px solid #26a69a;
-    box-shadow: 0 1px 0 0 #26a69a;
+.input-field input[type=text],
+.input-field input[type=number],
+.input-field textarea {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 15px;
+}
+
+.input-field input[type=number] {
+    width: 100px;
 }
 
 .btn {
     width: 100%;
     background-color: #26a69a;
+    margin-top: 20px;
 }
 
-.switch label input[type=checkbox]:checked + .lever {
-    background-color: #84c7c1;
+.switch label {
+    font-size: 1.2em;
+    color: #424242;
 }
 
-.switch label input[type=checkbox]:checked + .lever:after {
-    background-color: #26a69a;
+.switch .lever {
+    width: 50px;
+    height: 25px;
+}
+
+.google-bg {
+    background-color: #bbdefb;
+}
+
+.youtube-bg {
+    background-color: #ffcdd2;
 }

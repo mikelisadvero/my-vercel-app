@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container google-bg">
         <h4 class="center-align">Scraper Tool</h4>
         <div class="switch center-align">
             <label>
@@ -19,36 +19,43 @@
             </label>
         </div>
         
-        <div id="googleScraper" class="scraper-form">
-            <div class="input-field">
-                <input type="text" id="googleKeyword" name="googleKeyword">
-                <label for="googleKeyword">Keyword:</label>
+        <form id="scraperForm">
+            <div id="googleScraper" class="scraper-form">
+                <div class="input-field">
+                    <input type="text" id="googleKeyword" name="googleKeyword">
+                    <label for="googleKeyword">Keyword:</label>
+                </div>
+                
+                <div class="input-field">
+                    <input type="number" id="googleResults" name="googleResults" min="1" max="50">
+                    <label for="googleResults">Number of Results:</label>
+                </div>
+                
+                <div class="input-field">
+                    <textarea id="googleSites" name="googleSites" class="materialize-textarea"></textarea>
+                    <label for="googleSites">Sites to Include (optional):</label>
+                </div>
+                
+                <button class="btn waves-effect waves-light" type="submit">Submit</button>
             </div>
             
-            <div class="input-field">
-                <input type="number" id="googleResults" name="googleResults">
-                <label for="googleResults">Number of Results:</label>
+            <div id="youtubeScraper" class="scraper-form" style="display: none;">
+                <div class="input-field">
+                    <input type="text" id="youtubeKeyword" name="youtubeKeyword">
+                    <label for="youtubeKeyword">Keyword:</label>
+                </div>
+                
+                <div class="input-field">
+                    <input type="number" id="youtubeResults" name="youtubeResults" min="1" max="50">
+                    <label for="youtubeResults">Number of Results:</label>
+                </div>
+                
+                <button class="btn waves-effect waves-light" type="submit">Submit</button>
             </div>
-            
-            <div class="input-field">
-                <input type="text" id="googleSites" name="googleSites">
-                <label for="googleSites">Sites to Include (optional):</label>
-            </div>
-            
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right">send</i>
-            </button>
-        </div>
-        
-        <div id="youtubeScraper" class="scraper-form" style="display: none;">
-            <div class="input-field">
-                <input type="text" id="youtubeKeyword" name="youtubeKeyword">
-                <label for="youtubeKeyword">Keyword:</label>
-            </div>
-            
-            <div class="input-field">
-                <input type="number" id="youtubeResults" name="youtubeResults">
-                <label for="youtubeResults">Number of Results:</label>
-            </div>
-            
-            <
+        </form>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
