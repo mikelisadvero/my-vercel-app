@@ -18,8 +18,8 @@ body, html {
 .container {
     background-color: white; /* Container remains white */
     padding: 20px;
-    width: 75%; /* Increased width */
-    max-width: 600px;
+    width: 75%; /* Adjusted width */
+    max-width: 600px; /* Adjusted maximum width to prevent excessive narrowness */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
@@ -27,6 +27,7 @@ body, html {
 #formContainer {
     position: relative;
     height: 300px; /* Fixed height for the form container */
+    overflow: hidden; /* Hide overflow to maintain fixed height */
 }
 
 .scraper-form {
@@ -44,15 +45,19 @@ body, html {
     visibility: visible;
 }
 
-.input-field input {
+.input-field input, .input-field textarea {
+    width: calc(100% - 30px); /* Full width minus padding for better alignment */
+    margin: 0 15px;
+    padding: 8px 10px;
     background-color: #f6f6f6; /* Slight gray background */
     border-radius: 5px; /* Rounded borders */
-    border: none;
-    box-shadow: none;
+    border: 2px solid #ccc; /* Gray border for input fields */
+    box-sizing: border-box; /* Include padding and border in the width */
 }
 
 .input-field label {
     color: #9e9e9e;
+    left: 15px; /* Adjust label position to align with input text */
 }
 
 .submit-btn {
@@ -60,5 +65,5 @@ body, html {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: calc(100% - 30px); /* Button width adjusted to fit inside the form */
 }
