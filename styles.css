@@ -1,8 +1,7 @@
 body, html {
     height: 100%;
-    margin: 0;
+    margin: 40px;
     padding: 0;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -65,5 +64,41 @@ body, html {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100% - 30px); /* Button width adjusted to fit inside the form */
+    width: 50%; /* Button width adjusted to fit inside the form */
+
+}
+.card-panel {
+    box-shadow: none; /* Removes any shadows from the card-panel class */
+}
+.btn {
+    height: 50px !important;
+}
+input {
+	padding-left:15px !important;
+	border: 1px solid #f4f4f4 !important;
+	border-radius: 8px !important;
+	background: #fdfdfd !important;
+	width: calc(100% - 20px) !important;
+	    -webkit-box-shadow:none !important;
+       -moz-box-shadow:none !important;
+            box-shadow:none !important;
+
+    background: transparent;
+}
+input:focus {
+	border: 1px solid #f4f4f4 !important;
+	border-radius: 8px !important;
+	background: #f4f4f4 !important;
+	width: calc(100% - 20px) !important;
+	    -webkit-box-shadow:none !important;
+       -moz-box-shadow:none !important;
+            box-shadow:none !important;
+
+    background: transparent;
+}
+label {
+	padding-bottom:5px !important;
+}
+label:focus {
+	padding-bottom:5px !important;
 }
