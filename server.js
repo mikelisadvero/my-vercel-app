@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -6,16 +7,12 @@ const { google } = require('googleapis');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Path to your Google service account credentials
-const credentials = require('./my-vercel-app-2f6ab594c6a1.json');
-
-// Configure Google auth client
+// Configure Google auth client with environment variables
 const auth = new google.auth.GoogleAuth({
-    credentials: credentials,
+    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
     scopes: ['https://www.googleapis.com/auth/spreadsheets']
 });
 
-// Get auth client for Google Sheets API
 const googleClientPromise = auth.getClient();
 
 app.use(bodyParser.json());
@@ -35,7 +32,7 @@ app.post('/scrape', async (req, res) => {
 
 async function runApifyActor(type, keyword, numResults, sites) {
     const actorId = type === 'google' ? '52YojklHNAIElW3t8' : 'ptLGAfpjlMEmQildy';
-    let apiUrl = `https://api.apify.com/v2/actor-tasks/${actorId}/run-sync-get-dataset-items`;
+    const apiUrl = `https://api.apify.com/v2/actor-tasks/${actorId}/run-sync-get-dataset-items`;
     let searchQuery = keyword;
 
     if (type === 'google' && sites) {
@@ -50,8 +47,7 @@ async function runApifyActor(type, keyword, numResults, sites) {
 
     const response = await axios.post(apiUrl, params, {
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer apify_api_PvQbzMF9kIDzbmD7lMFDEr0N0ofisS0wws91'
+            'Authorization': `Bearer ${process.env.APIFY_TOKEN}`
         }
     });
 
