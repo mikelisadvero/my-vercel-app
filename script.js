@@ -18,3 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+document.getElementById('scraperForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const type = document.getElementById('scraperToggle').checked ? 'youtube' : 'google';
+    const keyword = document.querySelector('.active #googleKeyword').value || document.querySelector('.active #youtubeKeyword').value;
+    const numResults = document.querySelector('.active #googleResults').value || document.querySelector('.active #youtubeResults').value;
+    const sites = document.getElementById('googleSites') ? document.getElementById('googleSites').value : '';
+
+    fetch('/scrape', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ type, keyword, numResults, sites })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+});
