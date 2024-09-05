@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/scrape", "dest": "/api/scrape.js" }
+  ]
+}
