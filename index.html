@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="grey lighten-3">
+<body class="background google">
     <div class="container">
         <h4 class="center-align">Scraper Tool</h4>
         <div class="switch center-align">
@@ -19,10 +19,9 @@
             </label>
         </div>
         
-        <div id="formContainer" class="card-panel">
+        <div id="formContainer" class="card-panel z-depth-2">
             <form id="scraperForm">
-                <!-- Google Scraper Form -->
-                <div id="googleScraper" class="scraper-form">
+                <div id="googleScraper" class="scraper-form active">
                     <div class="input-field">
                         <input type="text" id="googleKeyword" name="googleKeyword">
                         <label for="googleKeyword">Keyword:</label>
@@ -37,12 +36,9 @@
                         <input type="text" id="googleSites" name="googleSites">
                         <label for="googleSites">Sites to Include (optional):</label>
                     </div>
-                    
-                    <button class="btn waves-effect waves-light" type="submit">Submit</button>
                 </div>
                 
-                <!-- YouTube Scraper Form -->
-                <div id="youtubeScraper" class="scraper-form" style="display: none;">
+                <div id="youtubeScraper" class="scraper-form">
                     <div class="input-field">
                         <input type="text" id="youtubeKeyword" name="youtubeKeyword">
                         <label for="youtubeKeyword">Keyword:</label>
@@ -52,9 +48,8 @@
                         <input type="number" id="youtubeResults" name="youtubeResults">
                         <label for="youtubeResults">Number of Results:</label>
                     </div>
-                    
-                    <button class="btn waves-effect waves-light" type="submit">Submit</button>
                 </div>
+                <button class="btn waves-effect waves-light submit-btn" type="submit">Submit</button>
             </form>
         </div>
     </div>
