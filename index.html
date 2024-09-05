@@ -4,51 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scraper Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container google-bg">
-        <h1>Scraper Tool</h1>
-        <div class="toggle-container">
-            <label class="switch">
+        <h4 class="center-align">Scraper Tool</h4>
+        <div class="switch center-align">
+            <label>
+                Google Scraper
                 <input type="checkbox" id="scraperToggle">
-                <span class="slider round"></span>
+                <span class="lever"></span>
+                YouTube Scraper
             </label>
-            <span id="toggleLabel">Google Scraper</span>
         </div>
         
         <form id="scraperForm">
-            <!-- Google Scraper Form -->
             <div id="googleScraper" class="scraper-form">
-                <div class="input-group">
-                    <input type="text" id="googleKeyword" name="googleKeyword" placeholder="Keyword">
+                <div class="input-field">
+                    <input type="text" id="googleKeyword" name="googleKeyword">
+                    <label for="googleKeyword">Keyword:</label>
                 </div>
                 
-                <div class="input-group">
-                    <input type="number" id="googleResults" name="googleResults" min="1" max="50" placeholder="Number of Results">
+                <div class="input-field">
+                    <input type="number" id="googleResults" name="googleResults" min="1" max="50">
+                    <label for="googleResults">Number of Results:</label>
                 </div>
                 
-                <div class="input-group">
-                    <textarea id="googleSites" name="googleSites" placeholder="Sites to Include (optional)"></textarea>
+                <div class="input-field">
+                    <textarea id="googleSites" name="googleSites" class="materialize-textarea"></textarea>
+                    <label for="googleSites">Sites to Include (optional):</label>
                 </div>
                 
-                <button type="submit">Submit</button>
+                <button class="btn waves-effect waves-light" type="submit">Submit</button>
             </div>
             
-            <!-- YouTube Scraper Form -->
             <div id="youtubeScraper" class="scraper-form" style="display: none;">
-                <div class="input-group">
-                    <input type="text" id="youtubeKeyword" name="youtubeKeyword" placeholder="Keyword">
+                <div class="input-field">
+                    <input type="text" id="youtubeKeyword" name="youtubeKeyword">
+                    <label for="youtubeKeyword">Keyword:</label>
                 </div>
                 
-                <div class="input-group">
-                    <input type="number" id="youtubeResults" name="youtubeResults" min="1" max="50" placeholder="Number of Results">
+                <div class="input-field">
+                    <input type="number" id="youtubeResults" name="youtubeResults" min="1" max="50">
+                    <label for="youtubeResults">Number of Results:</label>
                 </div>
                 
-                <button type="submit">Submit</button>
+                <button class="btn waves-effect waves-light" type="submit">Submit</button>
             </div>
         </form>
     </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
