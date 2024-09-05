@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scraper Tool</h1>
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="scraperToggle">
+                <span class="slider"></span>
+            </label>
+            <span id="toggleLabel">Google Scraper</span>
+        </div>
+        
+        <form id="scraperForm">
+            <!-- Google Scraper Form -->
+            <div id="googleScraper" class="scraper-form">
+                <label for="googleKeyword">Keyword:</label>
+                <input type="text" id="googleKeyword" name="googleKeyword">
+                
+                <label for="googleResults">Number of Results:</label>
+                <input type="number" id="googleResults" name="googleResults">
+                
+                <label for="googleSites">Sites to Include (optional, use site:example.com):</label>
+                <input type="text" id="googleSites" name="googleSites">
+                
+                <button type="submit">Submit</button>
+            </div>
+            
+            <!-- YouTube Scraper Form -->
+            <div id="youtubeScraper" class="scraper-form" style="display: none;">
+                <label for="youtubeKeyword">Keyword:</label>
+                <input type="text" id="youtubeKeyword" name="youtubeKeyword">
+                
+                <label for="youtubeResults">Number of Results:</label>
+                <input type="number" id="youtubeResults" name="youtubeResults">
+                
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
