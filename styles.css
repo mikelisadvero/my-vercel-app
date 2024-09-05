@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fafafa;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px; /* Reduced width for a narrower form */
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.input-field label {
+    color: #9e9e9e;
+}
+
+.input-field input[type=text]:focus + label,
+.input-field input[type=number]:focus + label,
+.input-field textarea:focus + label {
+    color: #26a69a; /* Highlight color when field is focused */
+}
+
+.input-field input[type=text],
+.input-field input[type=number],
+.input-field textarea {
+    border: 1px solid #ccc; /* Defines border for input fields */
+    border-radius: 4px; /* Rounded corners for the fields */
+    padding: 10px 15px;
+}
+
+.input-field input[type=number] {
+    width: 100px; /* Specific width for number input */
+}
+
+.btn {
+    width: 100%;
+    background-color: #2196F3; /* Blue color for the button */
+    margin-top: 20px;
+    color: white; /* White text for visibility */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+}
+
+.switch label {
+    font-size: 1.4em; /* Larger font for the toggle label */
+    color: #424242; /* Dark gray color for better readability */
+}
+
+.switch .lever {
+    width: 60px; /* Larger lever for easier toggling */
+    height: 30px; /* Taller lever for visual balance */
+}
+
+.google-bg {
+    background-color: #bbdefb; /* Light blue background for Google mode */
+}
+
+.youtube-bg {
+    background-color: #ffcdd2; /* Light red background for YouTube mode */
+}
