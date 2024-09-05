@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const googleScraper = document.getElementById('googleScraper');
     const youtubeScraper = document.getElementById('youtubeScraper');
 
+    // Handle toggle between Google and YouTube scrapers
     toggle.addEventListener('change', function() {
         if (this.checked) {
             googleScraper.classList.remove('active');
@@ -18,14 +19,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Handle form submission
 document.getElementById('scraperForm').addEventListener('submit', function(e) {
     e.preventDefault();
+
+    // Determine scraper type
     const type = document.getElementById('scraperToggle').checked ? 'youtube' : 'google';
-    const keyword = document.querySelector('.active #googleKeyword').value || document.querySelector('.active #youtubeKeyword').value;
-    const numResults = document.querySelector('.active #googleResults').value || document.querySelector('.active #youtubeResults').value;
+
+    // Get values from input fields
+    const keyword = document.querySelector('.active #googleKeyword')?.value || document.querySelector('.active #youtubeKeyword')?.value;
+    const numResults = document.querySelector('.active #googleResults')?.value || document.querySelector('.active #youtubeResults')?.value;
     const sites = document.getElementById('googleSites') ? document.getElementById('googleSites').value : '';
 
-    fetch('/scrape', {
+    // Validate required fields (e.g., keyword and numResults must not be empty)
+    if (!keyword || !numResults) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    // Send data to the server
+    fetch('/api/scrape', {  // Corrected URL to match Next.js API route
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -33,6 +47,9 @@ document.getElementById('scraperForm').addEventListener('submit', function(e) {
         body: JSON.stringify({ type, keyword, numResults, sites })
     })
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+        console.log(data);
+        alert('Scraping completed successfully!');
+    })
     .catch(error => console.error('Error:', error));
 });
