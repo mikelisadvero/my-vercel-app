@@ -1,17 +1,76 @@
+import axios from 'axios';
+import { google } from 'googleapis';
+
+// Setup Google Sheets API
+const auth = new google.auth.GoogleAuth({
+    keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    scopes: ['https://www.googleapis.com/auth/spreadsheets']
+});
+const googleClientPromise = auth.getClient();
+
+// This function will handle scraping based on the actor type
 async function runApifyActor(type, keyword, numResults, sites) {
-    // Implementation of your scraping logic with Apify
-    try {
-        // Your code to call Apify and process the response
-        return { data: "Sample Data from Apify" }; // Example response
-    } catch (error) {
-        console.error("Failed to run Apify actor:", error);
-        throw error; // Rethrow the error to be caught by the outer try-catch
+    const actorId = type === 'google' ? 'lzjHrkj6h55oGvZvv' : 'ptLGAfpjlMEmQildy';
+    const apiUrl = `https://api.apify.com/v2/actor-tasks/${actorId}/run-sync-get-dataset-items`;
+    let searchQuery = keyword;
+
+    if (type === 'google' && sites) {
+        const siteQuery = sites.split(',').map(site => `site:${site.trim()}`).join('+OR+');
+        searchQuery += '+' + siteQuery;
     }
+
+    const params = {
+        keyword: searchQuery,
+        numResults: numResults
+    };
+
+    const response = await axios.post(apiUrl, params, {
+        headers: {
+            'Authorization': `Bearer ${process.env.APIFY_TOKEN}`
+        }
+    });
+
+    return response.data; // Assuming response data is directly usable
 }
 
+// This function will handle saving the results to Google Sheets
+async function writeToGoogleSheets(type, keyword, data) {
+    const googleClient = await googleClientPromise;
+    const googleSheetsApi = google.sheets({ version: 'v4', auth: googleClient });
+    const sheetTitle = type === 'google' ? `Search: ${keyword}` : `YouTube: ${keyword}`;
+    const headers = type === 'google' ? ['Title', 'URL'] : ['Title', 'URL', 'Subscribers', 'Video Views', 'Channel Title'];
+    const values = data.map(item => type === 'google' ? [item.title, item.url] : [item.title, item.url, item.subscribers, item.views, item.channel]);
+
+    const spreadsheet = await googleSheetsApi.spreadsheets.create({
+        requestBody: {
+            properties: {
+                title: sheetTitle
+            },
+            sheets: [{
+                properties: {
+                    title: 'Data'
+                }
+            }]
+        }
+    });
+
+    await googleSheetsApi.spreadsheets.values.append({
+        spreadsheetId: spreadsheet.data.spreadsheetId,
+        range: 'Data!A1',
+        valueInputOption: 'USER_ENTERED',
+        resource: {
+            values: [headers, ...values]
+        }
+    });
+
+    return `Created new sheet: ${spreadsheet.data.spreadsheetUrl}`;
+}
+
+// API Route Handler
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { type, keyword, numResults, sites } = req.body;
+
         try {
             const data = await runApifyActor(type, keyword, numResults, sites);
             const responseMessage = await writeToGoogleSheets(type, keyword, data);
