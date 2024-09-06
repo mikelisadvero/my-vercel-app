@@ -17,7 +17,7 @@ const googleClientPromise = auth.getClient();
 
 app.use(bodyParser.json());
 
-app.post('/scrape', async (req, res) => {
+app.post('/api/scrape', async (req, res) => {
     const { type, keyword, numResults, sites } = req.body;
 
     try {
